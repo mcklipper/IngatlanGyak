@@ -1,0 +1,85 @@
+﻿<Window 
+    x:Class="IngatlanGyak.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:IngatlanGyak"
+    mc:Ignorable="d"
+    Title="MainWindow" 
+    Height="450" 
+    Width="800">
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid
+            ItemsSource="{ Binding Ingatlanok }"
+            Margin="5"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            MouseDoubleClick="DataGrid_SelectionChanged"
+            SelectionChanged="DataGrid_SelectionChanged">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="Azonosító"
+                    Binding="{ Binding Id }"/>
+
+                <DataGridTextColumn
+                    Header="Város neve"
+                    Binding="{ Binding Varos }"/>
+
+                <DataGridTextColumn
+                    Header="Utca / házszám"
+                    Binding="{ Binding Utca }"/>
+
+                <DataGridTextColumn
+                    Header="Alapterület"
+                    Binding="{ Binding Alapterulet }"/>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+
+        <ComboBox 
+            x:Name="cbVarosok"
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            Margin="5 0"
+            Width="100"
+            SelectedIndex="0"
+            ItemsSource="{ Binding Varosok }" SelectionChanged="CbVarosok_SelectionChanged"/>
+
+        <DataGrid
+            Grid.Row="2"
+            Margin="5"
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            ItemsSource="{ Binding KeresettIngatlanok }">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="Város neve"
+                    Binding="{ Binding Varos }"/>
+
+                <DataGridTextColumn
+                    Header="Alapterület"
+                    Binding="{ Binding Alapterulet }"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+    </Grid>
+    
+</Window>
